@@ -12,6 +12,7 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 * Uses connection pool for Redis connections
 * Redis configuration support
 * Redis Sentinel configuration support
+* Redis driver ruby, hiredis and synchrony support
 * Sidekiq Cron support
 * HTTP Basic Auth support
 

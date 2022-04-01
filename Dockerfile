@@ -19,8 +19,11 @@ ARG SIDEKIQ_VERSION=~>6.0
 ARG SIDEKIQ_CRON_VERSION=~>1.0
 ARG PUMA_VERSION=~>5.0
 RUN echo "source 'https://rubygems.org';\
+          gem 'hiredis'; \
+          gem 'em-synchrony'; \
           gem 'sidekiq', '$SIDEKIQ_VERSION';\
           gem 'sidekiq-cron', '$SIDEKIQ_CRON_VERSION';\
+          gem 'redis-namespace'; \
           gem 'puma', '$PUMA_VERSION'" > Gemfile
 
 # Install gems.

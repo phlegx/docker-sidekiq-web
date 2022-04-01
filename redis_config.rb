@@ -4,6 +4,8 @@
 #
 # Description: Redis configuration with sentinel configuration options.
 # Author: Egon Zemmer, Phlegx Systems OG
+require 'redis-namespace'
+
 module RedisConfig
   class << self
     def config(options = {})
@@ -19,13 +21,13 @@ module RedisConfig
     def single_config(options = {})
       namespace = options.delete(:namespace)
       uri = "#{ENV['REDIS_URI']}/#{options.delete(:db).to_i}"
-      redis = ::Redis.new(
+      redis = Redis.new(
         driver:   ENV.fetch('REDIS_DRIVER', :hiredis).to_sym,
         url:      "redis://#{uri}",
         password: ENV['REDIS_PASSWORD'],
         **options
       )
-      namespace ? ::Redis::Namespace.new(namespace, redis: redis) : redis
+      namespace ? Redis::Namespace.new(namespace, redis: redis) : redis
     end
 
     def sentinel_config(options = {})
@@ -37,7 +39,7 @@ module RedisConfig
       end
 
       namespace = options.delete(:namespace)
-      redis = ::Redis.new(
+      redis = Redis.new(
         driver:    ENV.fetch('REDIS_DRIVER', :hiredis).to_sym,
         url:       "redis://#{ENV['REDIS_SENTINEL_MASTER_URI']}",
         sentinels: sentinels,
@@ -45,7 +47,7 @@ module RedisConfig
         role:      :master,
         **options
       )
-      namespace ? ::Redis::Namespace.new(namespace, redis: redis) : redis
+      namespace ? Redis::Namespace.new(namespace, redis: redis) : redis
     end
   end
 end
