@@ -8,7 +8,10 @@ require 'securerandom'
 require 'rack'
 require 'sidekiq'
 require 'sidekiq/web'
-require 'sidekiq-cron' if ENV['SIDEKIQ_CRON'] && ENV['SIDEKIQ_CRON'] == 'true'
+if ENV['SIDEKIQ_CRON'] && ENV['SIDEKIQ_CRON'] == 'true'
+  require 'sidekiq-cron'
+  require 'sidekiq/cron/web'
+end
 require './redis_config'
 
 # Add Rack session cookie secret.
