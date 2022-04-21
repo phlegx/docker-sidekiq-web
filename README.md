@@ -97,6 +97,18 @@ docker run \
   sidekiq-web
 ```
 
+### Reverse Proxy
+
+To run the container behind a proxy, make sure to set environment variable `SCRIPT_NAME` so that Sidekiq Web UI can properly construct URLs to the necessary CSS/JS assets:
+
+```
+docker run \
+  -p 3001:9292 \
+  -e REDIS_URI=host:6379 \
+  -e SCRIPT_NAME=/sidekiq \
+  sidekiq-web
+```
+
 ### Docker Compose
 
 Example compose file:
