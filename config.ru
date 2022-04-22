@@ -17,6 +17,7 @@ require './redis_config'
 # Add Rack session cookie secret.
 File.open('.session.key', 'w') { |f| f.write(SecureRandom.hex(32)) }
 use Rack::Session::Cookie, secret: File.read('.session.key'), same_site: true, max_age: 86_400
+Sidekiq::Web.set :session_secret, File.read('.session.key')
 
 # Create Redis instance.
 redis = proc {
