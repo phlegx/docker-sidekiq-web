@@ -144,4 +144,4 @@ services:
 
 The MIT License
 
-Copyright (c) 2022 Phlegx Systems OG
+Copyright (c) 2022 Phlegx Systems Technologies GmbH
