@@ -12,7 +12,7 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 * Uses connection pool for Redis connections
 * Redis configuration support
 * Redis Sentinel configuration support
-* Redis driver ruby, hiredis and synchrony support
+* Redis driver ruby and hiredis support
 * Sidekiq Cron support
 * HTTP Basic Auth support
 
@@ -22,10 +22,10 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 
 ```
 docker build \
-  --build-arg RUBY_VERSION=2.7.5-slim-buster \
-  --build-arg SIDEKIQ_VERSION=6.4.1 \
-  --build-arg SIDEKIQ_CRON_VERSION=1.2.0 \
-  --build-arg PUMA_VERSION=5.6.4 \
+  --build-arg RUBY_VERSION=3.2.2-slim-buster \
+  --build-arg SIDEKIQ_VERSION=7.1.0 \
+  --build-arg SIDEKIQ_CRON_VERSION=1.10.0 \
+  --build-arg PUMA_VERSION=6.2.2 \
   -t sidekiq-web .
 ```
 
@@ -59,10 +59,9 @@ docker run \
   -p 3001:9292 \
   -e REDIS_URI=host:6379 \
   -e REDIS_DB=1 \
-  -e REDIS_NAMESPACE=test \
   -e REDIS_POOL_SIZE=5 \
   -e REDIS_PASSWORD=password \
-  -e REDIS_DRIVER=synchrony \
+  -e REDIS_DRIVER=ruby \
   sidekiq-web
 ```
 
@@ -76,9 +75,8 @@ docker run \
   -e REDIS_SENTINEL_MASTER_URI=urimaster \
   -e REDIS_SENTINEL_PASSWORD=password \
   -e REDIS_DB=1 \
-  -e REDIS_NAMESPACE=test \
   -e REDIS_POOL_SIZE=5 \
-  -e REDIS_DRIVER=synchrony \
+  -e REDIS_DRIVER=ruby \
   sidekiq-web
 ```
 
@@ -117,7 +115,7 @@ Example compose file:
 version: '3'
 services:
   sidekiq-web:
-    image: phlegx/sidekiq-web:r2.7-s6
+    image: phlegx/sidekiq-web:r3.2-s7
     environment:
       REDIS_URI: host:6379
       REDIS_PASSWORD: password
@@ -144,4 +142,4 @@ services:
 
 The MIT License
 
-Copyright (c) 2022 Phlegx Systems Technologies GmbH
+Copyright (c) 2023 Phlegx Systems Technologies GmbH

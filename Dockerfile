@@ -1,7 +1,7 @@
 # Sidekiq Web
 #
 # Description: Dockerfile for standalone Sidekiq Web with Puma.
-# Author: Egon Zemmer, Phlegx Systems OG
+# Author: Egon Zemmer, Phlegx Systems Technologies GmbH
 
 # Set base image.
 ARG RUBY_VERSION=latest
@@ -15,15 +15,15 @@ RUN mkdir -p /usr/src/sidekiq
 WORKDIR /usr/src/sidekiq
 
 # Add gems.
-ARG SIDEKIQ_VERSION=~>6.0
+ARG SIDEKIQ_VERSION=~>7.0
 ARG SIDEKIQ_CRON_VERSION=~>1.0
-ARG PUMA_VERSION=~>5.0
-RUN echo "source 'https://rubygems.org';\
-          gem 'hiredis'; \
-          gem 'em-synchrony'; \
-          gem 'sidekiq', '$SIDEKIQ_VERSION';\
-          gem 'sidekiq-cron', '$SIDEKIQ_CRON_VERSION';\
-          gem 'redis-namespace'; \
+ARG PUMA_VERSION=~>6.0
+RUN echo "source 'https://rubygems.org'; \
+          gem 'rackup'; \
+          gem 'rack-session'; \
+          gem 'hiredis-client'; \
+          gem 'sidekiq', '$SIDEKIQ_VERSION'; \
+          gem 'sidekiq-cron', '$SIDEKIQ_CRON_VERSION'; \
           gem 'puma', '$PUMA_VERSION'" > Gemfile
 
 # Install gems.
