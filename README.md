@@ -23,9 +23,9 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 ```
 docker build \
   --build-arg RUBY_VERSION=3.2.2-slim-buster \
-  --build-arg SIDEKIQ_VERSION=7.1.0 \
+  --build-arg SIDEKIQ_VERSION=7.1.2 \
   --build-arg SIDEKIQ_CRON_VERSION=1.10.1 \
-  --build-arg PUMA_VERSION=6.2.2 \
+  --build-arg PUMA_VERSION=6.3.1 \
   -t sidekiq-web .
 ```
 
