@@ -36,7 +36,7 @@ module RedisConfig
       {
         sentinels: sentinels,
         role:      :master,
-        url:       "redis://#{ENV['REDIS_SENTINEL_MASTER_URI']}",
+        name:      ENV['REDIS_SENTINEL_MASTER_URI'],
         password:  ENV['REDIS_SENTINEL_PASSWORD'],
         **options
       }
