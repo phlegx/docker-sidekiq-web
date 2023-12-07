@@ -72,7 +72,7 @@ docker run \
   -p 3001:9292 \
   -e REDIS_SENTINEL_URIS=uri1,uri2,uri3:26379 \
   -e REDIS_SENTINEL_PORT=26379 \
-  -e REDIS_SENTINEL_MASTER_URI=urimaster \
+  -e REDIS_SENTINEL_NAME=urimaster \
   -e REDIS_SENTINEL_PASSWORD=password \
   -e REDIS_PASSWORD=password \
   -e REDIS_DB=1 \
