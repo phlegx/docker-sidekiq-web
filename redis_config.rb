@@ -37,8 +37,8 @@ module RedisConfig
         sentinels:         sentinels,
         role:              :master,
         name:              ENV['REDIS_SENTINEL_NAME'],
-        password:          ENV['REDIS_PASSWORD'],
         sentinel_password: ENV['REDIS_SENTINEL_PASSWORD'],
+        password:          ENV['REDIS_PASSWORD'],
         **options
       }
     end
