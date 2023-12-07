@@ -23,9 +23,9 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 ```
 docker build \
   --build-arg RUBY_VERSION=3.2.2-slim-buster \
-  --build-arg SIDEKIQ_VERSION=7.1.2 \
-  --build-arg SIDEKIQ_CRON_VERSION=1.10.1 \
-  --build-arg PUMA_VERSION=6.3.1 \
+  --build-arg SIDEKIQ_VERSION=7.2.0 \
+  --build-arg SIDEKIQ_CRON_VERSION=1.11.0 \
+  --build-arg PUMA_VERSION=6.4.0 \
   -t sidekiq-web .
 ```
 
@@ -74,6 +74,7 @@ docker run \
   -e REDIS_SENTINEL_PORT=26379 \
   -e REDIS_SENTINEL_MASTER_URI=urimaster \
   -e REDIS_SENTINEL_PASSWORD=password \
+  -e REDIS_PASSWORD=password \
   -e REDIS_DB=1 \
   -e REDIS_POOL_SIZE=5 \
   -e REDIS_DRIVER=ruby \
