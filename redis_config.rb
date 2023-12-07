@@ -30,14 +30,15 @@ module RedisConfig
         index = url.rindex(%r{:\d+(/\d*)?$})
         port = index ? url[index + 1, url.length - 1].partition('/').first.strip : ENV['REDIS_SENTINEL_PORT'].to_i
         host = index ? url[0, index] : url
-        { host: host.strip, port: port, password: ENV['REDIS_SENTINEL_PASSWORD'] }
+        { host: host.strip, port: port }
       end
 
       {
-        sentinels: sentinels,
-        role:      :master,
-        name:      ENV['REDIS_SENTINEL_MASTER_URI'],
-        password:  ENV['REDIS_SENTINEL_PASSWORD'],
+        sentinels:         sentinels,
+        role:              :master,
+        name:              ENV['REDIS_SENTINEL_MASTER_URI'],
+        password:          ENV['REDIS_PASSWORD'],
+        sentinel_password: ENV['REDIS_SENTINEL_PASSWORD'],
         **options
       }
     end
