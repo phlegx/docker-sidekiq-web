@@ -32,7 +32,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            RUBY_VERSION=slim-buster
+            RUBY_VERSION=slim
             SIDEKIQ_VERSION=~>7.0
-            SIDEKIQ_CRON_VERSION=~>1.0
+            SIDEKIQ_CRON_VERSION=~>2.0
             PUMA_VERSION=~>6.0
