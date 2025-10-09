@@ -22,10 +22,10 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 
 ```
 docker build \
-  --build-arg RUBY_VERSION=3.4.1-slim \
-  --build-arg SIDEKIQ_VERSION=7.3.8 \
-  --build-arg SIDEKIQ_CRON_VERSION=2.1.0 \
-  --build-arg PUMA_VERSION=6.6.0 \
+  --build-arg RUBY_VERSION=3.4.7-slim \
+  --build-arg SIDEKIQ_VERSION=8.0.8 \
+  --build-arg SIDEKIQ_CRON_VERSION=2.3.1 \
+  --build-arg PUMA_VERSION=7.0.4 \
   -t sidekiq-web .
 ```
 
@@ -33,6 +33,7 @@ docker build \
 
 ```
 docker run \
+  --network redis-host-net \
   -p 3001:9292 \
   -e REDIS_URI=host:6379 \
   sidekiq-web
@@ -44,6 +45,7 @@ To run the container with Sidekiq Cron:
 
 ```
 docker run \
+  --network redis-host-net \
   -p 3001:9292 \
   -e REDIS_URI=host:6379 \
   -e SIDEKIQ_CRON=true \
@@ -56,6 +58,7 @@ To run the container with custom Redis configuration:
 
 ```
 docker run \
+  --network redis-host-net \
   -p 3001:9292 \
   -e REDIS_URI=host:6379 \
   -e REDIS_DB=1 \
@@ -69,6 +72,7 @@ Using Redis Sentinel configuration:
 
 ```
 docker run \
+  --network redis-host-net \
   -p 3001:9292 \
   -e REDIS_SENTINEL_URIS=uri1,uri2,uri3:26379 \
   -e REDIS_SENTINEL_PORT=26379 \
@@ -89,6 +93,7 @@ To run the container with a custom username and password:
 
 ```
 docker run \
+  --network redis-host-net \
   -p 3001:9292 \
   -e REDIS_URI=host:6379 \
   -e SIDEKIQ_USERNAME=username \
@@ -102,6 +107,7 @@ To run the container behind a proxy, make sure to set environment variable `SCRI
 
 ```
 docker run \
+  --network redis-host-net \
   -p 3001:9292 \
   -e REDIS_URI=host:6379 \
   -e SCRIPT_NAME=/sidekiq \
@@ -116,7 +122,7 @@ Example compose file:
 version: '3'
 services:
   sidekiq-web:
-    image: phlegx/sidekiq-web:r3.2-s7
+    image: phlegx/sidekiq-web:r3.4-s8
     environment:
       REDIS_URI: host:6379
       REDIS_PASSWORD: password
@@ -143,4 +149,4 @@ services:
 
 The MIT License
 
-Copyright (c) 2023 Phlegx Systems Technologies GmbH
+Copyright (c) 2025 Phlegx Systems Technologies GmbH

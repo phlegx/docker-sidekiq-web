@@ -8,16 +8,16 @@ ARG RUBY_VERSION=latest
 FROM ruby:$RUBY_VERSION AS builder
 
 RUN apt-get update && \
-    apt-get install -y build-essential
+    apt-get install -y build-essential libssl-dev
 
 # Add and enter working directory.
 RUN mkdir -p /usr/src/sidekiq
 WORKDIR /usr/src/sidekiq
 
 # Add gems.
-ARG SIDEKIQ_VERSION=~>7.0
+ARG SIDEKIQ_VERSION=~>8.0
 ARG SIDEKIQ_CRON_VERSION=~>2.0
-ARG PUMA_VERSION=~>6.0
+ARG PUMA_VERSION=~>7.0
 RUN echo "source 'https://rubygems.org'; \
           gem 'rackup'; \
           gem 'rack-session'; \
@@ -40,7 +40,8 @@ COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
 WORKDIR /usr/src/sidekiq
 
 # Create a dedicated user for running sidekiq web.
-RUN adduser --disabled-password --uid 1000 --gecos '' sidekiq-web
+# RUN adduser --disabled-password --uid 1000 --gecos '' sidekiq-web
+RUN useradd -m -u 1000 -s /bin/bash sidekiq-web 
 RUN chown -R sidekiq-web:sidekiq-web /usr/src/sidekiq
 
 # Set the user for RUN, CMD or ENTRYPOINT calls from now on.
