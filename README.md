@@ -22,10 +22,10 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 
 ```
 docker build \
-  --build-arg RUBY_VERSION=3.4.7-slim \
-  --build-arg SIDEKIQ_VERSION=8.0.8 \
+  --build-arg RUBY_VERSION=3.4.9-slim \
+  --build-arg SIDEKIQ_VERSION=8.1.2 \
   --build-arg SIDEKIQ_CRON_VERSION=2.3.1 \
-  --build-arg PUMA_VERSION=7.0.4 \
+  --build-arg PUMA_VERSION=7.2.0 \
   -t sidekiq-web .
 ```
 
@@ -149,4 +149,4 @@ services:
 
 The MIT License
 
-Copyright (c) 2025 Phlegx Systems Technologies GmbH
+Copyright (c) 2026 Phlegx Systems Technologies GmbH
