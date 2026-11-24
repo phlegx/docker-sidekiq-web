@@ -22,10 +22,10 @@ Docker Hub Repo: https://hub.docker.com/r/phlegx/sidekiq-web/
 
 ```
 docker build \
-  --build-arg RUBY_VERSION=3.4.9-slim \
-  --build-arg SIDEKIQ_VERSION=8.1.2 \
-  --build-arg SIDEKIQ_CRON_VERSION=2.3.1 \
-  --build-arg PUMA_VERSION=7.2.0 \
+  --build-arg RUBY_VERSION=3.4.13-slim \
+  --build-arg SIDEKIQ_VERSION=8.1.7 \
+  --build-arg SIDEKIQ_CRON_VERSION=2.4.0 \
+  --build-arg PUMA_VERSION=8.1.2 \
   -t sidekiq-web .
 ```
 

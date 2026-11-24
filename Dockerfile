@@ -17,7 +17,7 @@ WORKDIR /usr/src/sidekiq
 # Add gems.
 ARG SIDEKIQ_VERSION=~>8.0
 ARG SIDEKIQ_CRON_VERSION=~>2.0
-ARG PUMA_VERSION=~>7.0
+ARG PUMA_VERSION=~>8.0
 RUN echo "source 'https://rubygems.org'; \
           gem 'rackup'; \
           gem 'rack-session'; \
